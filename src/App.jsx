@@ -9,8 +9,8 @@ import "./App.css";
 const App = () => {
   const [mailboxes, setMailboxes] = useState([]);
 
-  const addBox = (event) => {
-    setMailboxes();
+  const handleAddBox = (formData) => {
+    setMailboxes([...mailboxes, formData]);
   };
 
   return (
@@ -25,9 +25,20 @@ const App = () => {
             </main>
           }
         />
-        <Route path="/mailboxes" element={<MailboxList />} />
-        <Route path="/new-mailbox" element={<MailboxForm />} />
-        <Route path="/mailboxes/:mailboxId" element={<MailboxDetails />} />
+        <Route
+          path="/mailboxes"
+          element={<MailboxList mailboxes={mailboxes} />}
+        />
+        <Route
+          path="/new-mailbox"
+          element={
+            <MailboxForm handleAddBox={handleAddBox} mailboxes={mailboxes} />
+          }
+        />
+        <Route
+          path="/mailboxes/:mailboxId"
+          element={<MailboxDetails mailboxes={mailboxes} />}
+        />
       </Routes>
     </>
   );
