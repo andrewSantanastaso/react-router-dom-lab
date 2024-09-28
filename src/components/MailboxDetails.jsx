@@ -6,8 +6,10 @@ const MailboxDetails = (props) => {
   const selectedBox = props.mailboxes.find(
     (mailbox) => mailbox._id === Number(mailboxId)
   );
-  console.log(selectedBox);
-
+  const selectedLetters = props.letters.filter(
+    (letter) => letter.mailboxId === Number(mailboxId)
+  );
+  console.log(selectedLetters);
   return (
     <>
       <h1>Mailbox {mailboxId}</h1>
@@ -15,6 +17,11 @@ const MailboxDetails = (props) => {
         <h3>Details</h3>
         <p> Boxholder: {selectedBox.boxHolder}</p>
         <p> Box Size: {selectedBox.boxSize}</p>
+      </div>
+      <div className="letters">
+        <h3>Letters</h3>
+        <p> Dear ,</p>
+        <p>{selectedLetters.message}</p>
       </div>
     </>
   );

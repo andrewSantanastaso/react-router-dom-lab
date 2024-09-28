@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const LetterForm = (props) => {
   const mailboxOptions = props.mailboxes.map((mailbox) => (
     <option key={mailbox._id}>Mailbox {mailbox._id}</option>
@@ -14,6 +16,7 @@ const LetterForm = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     props.handleAddLetter(formData);
+    console.log(formData);
   };
 
   return (
@@ -28,6 +31,7 @@ const LetterForm = (props) => {
         <input
           type="text"
           id="recipient"
+          name="recipient"
           placeholder="Recipient Name"
           onChange={handleChange}
         />
@@ -35,6 +39,7 @@ const LetterForm = (props) => {
         <textarea
           name="message"
           id="message"
+          name="message"
           placeholder="Message"
           onChange={handleChange}
         ></textarea>
