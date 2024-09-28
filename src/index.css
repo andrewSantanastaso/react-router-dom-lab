@@ -45,4 +45,12 @@ textarea {
 
 button {
   background-color: #535bf2;
+  color: white;
+  font-style: 4rem;
+  font-display: ;
+}
+
+textarea {
+  display: inline;
+  height: 150px;
 }

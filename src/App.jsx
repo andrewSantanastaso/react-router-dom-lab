@@ -44,7 +44,12 @@ const App = () => {
         />
         <Route
           path="/new-letter"
-          element={<LetterForm mailboxes={mailboxes} />}
+          element={
+            <LetterForm
+              mailboxes={mailboxes}
+              handleAddLetter={handleAddLetter}
+            />
+          }
         />
       </Routes>
     </>
