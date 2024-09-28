@@ -2,17 +2,20 @@ import MailboxDetails from "./components/MailboxDetails";
 import MailboxForm from "./components/MailboxForm";
 import MailboxList from "./components/MailboxList";
 import NavBar from "./components/NavBar";
+import LetterForm from "./components/LetterForm";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
 
 const App = () => {
   const [mailboxes, setMailboxes] = useState([]);
-
+  const [letters, setLetters] = useState([]);
   const handleAddBox = (formData) => {
     setMailboxes([...mailboxes, formData]);
   };
-
+  const handleAddLetter = (formData) => {
+    setLetters([...letters, formData]);
+  };
   return (
     <>
       <NavBar />
@@ -38,6 +41,10 @@ const App = () => {
         <Route
           path="/mailboxes/:mailboxId"
           element={<MailboxDetails mailboxes={mailboxes} />}
+        />
+        <Route
+          path="/new-letter"
+          element={<LetterForm mailboxes={mailboxes} />}
         />
       </Routes>
     </>
