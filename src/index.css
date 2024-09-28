@@ -53,3 +53,8 @@ textarea {
   display: inline;
   height: 150px;
 }
+
+.letters {
+  display: flex;
+  flex-direction: column;
+}

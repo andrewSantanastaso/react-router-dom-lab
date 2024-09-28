@@ -2,10 +2,13 @@ import { useState } from "react";
 
 const LetterForm = (props) => {
   const mailboxOptions = props.mailboxes.map((mailbox) => (
-    <option key={mailbox._id}>Mailbox {mailbox._id}</option>
+    <option key={mailbox._id} value={mailbox._id}>
+      Mailbox {mailbox._id}
+    </option>
   ));
+
   const [formData, setFormData] = useState({
-    mailboxId: null,
+    mailboxId: 1,
     recipient: "",
     message: "",
   });
@@ -15,7 +18,10 @@ const LetterForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.handleAddLetter(formData);
+    props.handleAddLetter(
+      formData,
+      (formData.mailboxId = parseInt(formData.mailboxId))
+    );
     console.log(formData);
   };
 
@@ -24,7 +30,12 @@ const LetterForm = (props) => {
       <h1> New Letter</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="mailboxId">Select a Mailbox</label>
-        <select name="mailboxId" id="mailboxId" onChange={handleChange}>
+        <select
+          id="mailboxId"
+          name="mailboxId"
+          onChange={handleChange}
+          value={formData.mailboxId}
+        >
           {mailboxOptions}
         </select>
         <label htmlFor="recipient">Recipient</label>
@@ -39,7 +50,6 @@ const LetterForm = (props) => {
         <textarea
           name="message"
           id="message"
-          name="message"
           placeholder="Message"
           onChange={handleChange}
         ></textarea>
